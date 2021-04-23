@@ -8,7 +8,10 @@ const Main = styled.div`
 `;
 
 const Contain = styled.div`
-  height: 35vh;
+  height: 45vw;
+  @media screen and (min-width: 768px) {
+    height: 350px;
+  }
 `;
 
 const Title = styled.div`
@@ -45,7 +48,7 @@ const Prize = styled.div`
     //animation: shadow 1s infinite;
     animation: switch-shadow 3s;
     @media screen and (min-width: 280px) {
-      width: 8%;
+      width: 13%;
     }
     @media screen and (min-width: 360px) {
       width: 18%;
@@ -132,12 +135,6 @@ const PokemonBall = styled.img`
   @media screen and (min-width: 280px) {
     width: 30%;
   }
-  @media screen and (min-width: 360px) {
-    width: 30%;
-  }
-  @media screen and (min-width: 414px) {
-    width: 30%;
-  }
   @media screen and (min-width: 540px) {
     width: 35%;
   }
@@ -153,7 +150,7 @@ const Lottery = styled.div`
   position: absolution;
   display: flex;
   justify-content: center;
-  margin-top: 140px;
+  margin-top: 40px;
 `;
 
 const LotteryButton = styled.button`
@@ -161,10 +158,10 @@ const LotteryButton = styled.button`
   border: none;
   outline: none;
   position: relative;
-  max-height: 100px;
-  max-width: 130px;
-  padding: 15px 14px;
-  font-size: 20px;
+  width: 50%;
+  max-width: 300px;
+  padding: 10px 8px;
+  font-size: 1px;
   background: #2e4595;
   border: 1px solid #1b1f4c;
   border-radius: 10px;
@@ -178,29 +175,46 @@ const LotteryButton = styled.button`
     color: #f8c145;
   }
 
-  @media screen and (min-width: 375px) {
-    // margin-top: -30px;
-    // padding: 10px 14px;
-    // font-size: 16px;
+  @media screen and (min-width: 280px) {
+    width: 25%;
+    padding: 12px 0px;
+    font-size: 10px;
   }
 
-  @media screen and (min-width: 280px) {
-    width: 60%;
+  @media screen and (min-width: 375px) {
+    width: 20%;
+    padding: 10px 0px;
+    font-size: 12px;
   }
-  @media screen and (min-width: 360px) {
-    width: 60%;
+
+  @media screen and (min-width: 445px) {
+    width: 16%;
+    padding: 12px 0px;
+    font-size: 13px;
   }
-  @media screen and (min-width: 414px) {
-    width: 60%;
+
+  @media screen and (min-width: 575px) {
+    width: 14%;
+    padding: 12px 0px;
+    font-size: 13px;
   }
-  @media screen and (min-width: 540px) {
-    width: 60%;
+
+  @media screen and (min-width: 700px) {
+    width: 10%;
+    padding: 12px 0px;
+    font-size: 14px;
   }
-  @media screen and (min-width: 768px) {
-    width: 60%;
+
+  @media screen and (min-width: 825px) {
+    width: 9%;
+    padding: 12px 0px;
+    font-size: 14px;
   }
-  @media screen and (min-width: 1024px) {
-    width: 100%;
+
+  @media screen and (min-width: 1300px) {
+    width: 7%;
+    padding: 12px 0px;
+    font-size: 16px;
   }
 `;
 
