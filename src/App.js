@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import prizeObject from './prizeObject';
 
 const Main = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   background: #1e81ded9;
 `;
 
 const Contain = styled.div`
+  max-height: 370px;
   height: 45vw;
   @media screen and (min-width: 768px) {
     height: 350px;
@@ -19,9 +20,13 @@ const Title = styled.div`
   justify-content: center;
   margin: 0 auto;
 `;
-const PokemonLogo = styled.img`
+const PokemonLogo = styled.div`
+  background: url('/pokemon_photo/pokemon-logo.png') center/cover no-repeat;
+  height: 30vw;
+  background-size: contain;
   margin-top: 25px;
   width: 60%;
+  max-height: 300px;
   max-width: 550px;
   @media screen and (min-width: 540px) {
     width: 80%;
@@ -86,9 +91,13 @@ const Prize = styled.div`
     }
   }
 `;
-const PokemonBall = styled.img`
+const PokemonBall = styled.div`
+  background: url('/pokemon_photo/pokemonball.svg') center/cover no-repeat;
+  height: 30vw;
+  background-size: contain;
   display: flex;
   width: 50%;
+  max-height: 275px;
   max-width: 280px;
   margin: 0 auto;
   position: relative;
@@ -223,11 +232,11 @@ export default function App() {
     <>
       <Main>
         <Title>
-          <PokemonLogo src='/pokemon_photo/pokemon-logo.png'></PokemonLogo>
+          <PokemonLogo />
         </Title>
         <Contain>
           <Prize>
-            <PokemonBall src='/pokemon_photo/pokemonball.svg'></PokemonBall>
+            <PokemonBall />
           </Prize>
         </Contain>
         <Lottery>
