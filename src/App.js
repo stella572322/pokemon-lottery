@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Footer from './components/Footer';
 import prizeObject from './prizeObject';
 
 const Main = styled.div`
   min-height: 100vh;
-  background: #1e81ded9;
+  background: #2983de;
+  padding-bottom: 40px;
 `;
 
 const Contain = styled.div`
@@ -50,8 +52,8 @@ const Prize = styled.div`
     box-shadow: 0px 0px 10px 10px rgba(0, 58, 113, 0.5);
     margin: 40px auto 0 auto;
     z-index: 1;
-    //animation: shadow 1s infinite;
-    animation: switch-shadow 3s;
+    animation: shadow 1s infinite;
+    //animation: switch-shadow 3s;
     @media screen and (min-width: 280px) {
       width: 13%;
     }
@@ -102,8 +104,8 @@ const PokemonBall = styled.div`
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  //animation: ball 1s infinite;
-  animation: switch 3s;
+  animation: ball 1s infinite;
+  //animation: switch 3s;
   @keyframes ball {
     0% {
       transform: translate(0, 5px);
@@ -135,7 +137,7 @@ const PokemonBall = styled.div`
       transform: scale(1.2);
     }
     95% {
-      transform: scale(0.1);
+      transform: scale(0.05);
     }
     100% {
       transform: scale(1);
@@ -156,75 +158,168 @@ const PokemonBall = styled.div`
 `;
 
 const Lottery = styled.div`
-  position: absolution;
+  position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 60px;
+  @keyframes living {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+  }
 `;
 
 const LotteryButton = styled.button`
-  box-sizing: border-box;
-  border: none;
-  outline: none;
   position: relative;
-  width: 50%;
-  max-width: 300px;
-  padding: 10px 8px;
-  font-size: 1px;
+  border-radius: 10px;
+  color: #ffffff;
+  z-index: 1;
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    border-radius: 10px;
+    animation: living 2s linear;
+    z-index: -1;
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    border-radius: 10px;
+    animation: living 2s linear;
+    animation-delay: 1s;
+  }
+
+  @media screen and (min-width: 280px) {
+    width: 25vw;
+    height: 10vw;
+    padding: 12px 0px;
+    font-size: 10px;
+  }
+
+  @media screen and (min-width: 375px) {
+    width: 20vw;
+    padding: 10px 0px;
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 445px) {
+    width: 16vw;
+    height: 8vw;
+    font-size: 13px;
+  }
+
+  @media screen and (min-width: 575px) {
+    width: 14vw;
+    padding: 12px 0px;
+    font-size: 15px;
+  }
+
+  @media screen and (min-width: 700px) {
+    width: 13vw;
+    height: 7vw;
+    font-size: 16px;
+  }
+
+  @media screen and (min-width: 825px) {
+    width: 12vw;
+    height: 6vw;
+    max-width: 115px;
+    max-height: 57px;
+  }
+`;
+
+const LotteryButtonContent = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #2e4595;
   border: 1px solid #1b1f4c;
   border-radius: 10px;
   box-shadow: 0 0 0 0.2px #1b1f4c;
-  color: #ffffff;
-  margin: 0 auto;
   text-align: center;
   cursor: pointer;
   &:hover {
     transform: scale(1.1);
     color: #f8c145;
   }
+`;
 
-  @media screen and (min-width: 280px) {
-    width: 25%;
-    padding: 12px 0px;
-    font-size: 10px;
-  }
+const Container = styled.div`
+  background: #2983de;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 20vw 20vw 20vw;
+  grid-template-rows: 20vw 20vw 20vw;
+  column-gap: 50px;
+  row-gap: 50px;
+  margin-top: 50px;
+`;
 
-  @media screen and (min-width: 375px) {
-    width: 20%;
-    padding: 10px 0px;
-    font-size: 12px;
-  }
-
-  @media screen and (min-width: 445px) {
-    width: 16%;
-    padding: 12px 0px;
-    font-size: 13px;
-  }
-
-  @media screen and (min-width: 575px) {
-    width: 14%;
-    padding: 12px 0px;
-    font-size: 13px;
-  }
-
-  @media screen and (min-width: 700px) {
-    width: 10%;
-    padding: 12px 0px;
-    font-size: 14px;
-  }
-
-  @media screen and (min-width: 825px) {
-    width: 9%;
-    padding: 12px 0px;
-    font-size: 14px;
-  }
-
-  @media screen and (min-width: 1300px) {
-    width: 7%;
-    padding: 12px 0px;
-    font-size: 16px;
-  }
+const Item_1 = styled.div`
+  background: red;
+  width: 100%;
+  height: 100%;
+`;
+const Item_2 = styled.div`
+  background: green;
+  width: 100%;
+  height: 100%;
+`;
+const Item_3 = styled.div`
+  background: black;
+  width: 100%;
+  height: 100%;
+`;
+const Item_4 = styled.div`
+  background: red;
+  width: 100%;
+  height: 100%;
+`;
+const Item_5 = styled.div`
+  background: black;
+  width: 100%;
+  height: 100%;
+`;
+const Item_6 = styled.div`
+  background: green;
+  width: 100%;
+  height: 100%;
+`;
+const Item_7 = styled.div`
+  background: black;
+  width: 100%;
+  height: 100%;
+`;
+const Item_8 = styled.div`
+  background: blue;
+  width: 100%;
+  height: 100%;
 `;
 
 export default function App() {
@@ -240,10 +335,23 @@ export default function App() {
           </Prize>
         </Contain>
         <Lottery>
-          <LotteryButton>My Award</LotteryButton>
-          {/* <LotteryButton>Play Again</LotteryButton> */}
+          <LotteryButton>
+            <LotteryButtonContent>My Award</LotteryButtonContent>
+            {/* <LotteryButton>Play Again</LotteryButton> */}
+          </LotteryButton>
         </Lottery>
+        <Container>
+          <Item_1></Item_1>
+          <Item_2></Item_2>
+          <Item_3></Item_3>
+          <Item_4></Item_4>
+          <Item_5></Item_5>
+          <Item_6></Item_6>
+          <Item_7></Item_7>
+          <Item_8></Item_8>
+        </Container>
       </Main>
+      <Footer />
     </>
   );
 }
