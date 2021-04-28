@@ -39,6 +39,36 @@ const PokemonLogo = styled.div`
   @media screen and (min-width: 1024px) {
     width: 100%;
   }
+  animation: rubberBand 1.5s;
+  @keyframes rubberBand {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+      transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+      transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+      transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+      transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+      transform: scale3d(1.05, 0.95, 1);
+    }
+
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
 `;
 const Prize = styled.div`
   &:after {
@@ -53,6 +83,7 @@ const Prize = styled.div`
     margin: 40px auto 0 auto;
     z-index: 1;
     animation: shadow 1s infinite;
+    animation-delay: 1.5s;
     //animation: switch-shadow 3s;
     @media screen and (min-width: 280px) {
       width: 13%;
@@ -105,6 +136,7 @@ const PokemonBall = styled.div`
   position: relative;
   z-index: 2;
   animation: ball 1s infinite;
+  animation-delay: 1.5s;
   //animation: switch 3s;
   @keyframes ball {
     0% {
@@ -194,6 +226,7 @@ const LotteryButton = styled.button`
     background: #fff;
     border-radius: 10px;
     animation: living 2s linear;
+    animation-delay: 1.5s;
     z-index: -1;
   }
 
@@ -207,7 +240,7 @@ const LotteryButton = styled.button`
     background: #fff;
     border-radius: 10px;
     animation: living 2s linear;
-    animation-delay: 1s;
+    animation-delay: 2.5s;
   }
 
   @media screen and (min-width: 280px) {
