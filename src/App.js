@@ -82,9 +82,11 @@ const Prize = styled.div`
     box-shadow: 0px 0px 10px 10px rgba(0, 58, 113, 0.5);
     margin: 40px auto 0 auto;
     z-index: 1;
-    animation: shadow 1s infinite;
-    animation-delay: 1.5s;
-    //animation: switch-shadow 3s;
+
+    ${(props) =>
+      props.$isDraw
+        ? 'animation: switch-shadow 3s;'
+        : 'animation: shadow 1s infinite;' + 'animation-delay: 1.5s;'}
     @media screen and (min-width: 280px) {
       width: 13%;
     }
@@ -135,9 +137,10 @@ const PokemonBall = styled.div`
   margin: 0 auto;
   position: relative;
   z-index: 2;
-  animation: ball 1s infinite;
-  animation-delay: 1.5s;
-  //animation: switch 3s;
+  ${(props) =>
+    props.$isDraw
+      ? 'animation: switch 3s;'
+      : 'animation: ball 1s infinite;' + 'animation-delay: 1.5s;'}
   @keyframes ball {
     0% {
       transform: translate(0, 5px);
@@ -315,47 +318,66 @@ const Container = styled.div`
 `;
 
 const Item_1 = styled.div`
-  background: red;
+  background: url('/pokemon_photo/1.svg') center/cover no-repeat;
+  background-color: #2e4595;
   width: 100%;
   height: 100%;
 `;
 const Item_2 = styled.div`
-  background: green;
+  background: url('/pokemon_photo/2.svg') center/cover no-repeat;
+  background-color: #f8c145;
   width: 100%;
   height: 100%;
 `;
 const Item_3 = styled.div`
-  background: black;
+  background: url('/pokemon_photo/3.svg') center/cover no-repeat;
+  background-color: #2e4595;
   width: 100%;
   height: 100%;
 `;
 const Item_4 = styled.div`
-  background: red;
+  background: url('/pokemon_photo/4.svg') center/cover no-repeat;
+  background-color: #f8c145;
   width: 100%;
   height: 100%;
 `;
 const Item_5 = styled.div`
-  background: black;
+  background: url('/pokemon_photo/5.svg') center/cover no-repeat;
+  background-color: #2e4595;
   width: 100%;
   height: 100%;
 `;
 const Item_6 = styled.div`
-  background: green;
+  background: url('/pokemon_photo/6.svg') center/cover no-repeat;
+  background-color: #f8c145;
   width: 100%;
   height: 100%;
 `;
 const Item_7 = styled.div`
-  background: black;
+  background: url('/pokemon_photo/7.svg') center/cover no-repeat;
+  background-color: #2e4595;
   width: 100%;
   height: 100%;
 `;
 const Item_8 = styled.div`
-  background: blue;
+  background: url('/pokemon_photo/8.svg') center/cover no-repeat;
+  background-color: #f8c145;
   width: 100%;
   height: 100%;
 `;
 
 export default function App() {
+  const [isDraw, setIsDraw] = useState(false);
+  const handleClickDraw = () => {
+    if (isDraw) {
+      return;
+    }
+    setIsDraw(true);
+    setTimeout(() => {
+      setIsDraw(false);
+    }, 3000);
+  };
+
   return (
     <>
       <Main>
@@ -363,13 +385,13 @@ export default function App() {
           <PokemonLogo />
         </Title>
         <Contain>
-          <Prize>
-            <PokemonBall />
+          <Prize $isDraw={isDraw}>
+            <PokemonBall $isDraw={isDraw} />
           </Prize>
         </Contain>
         <Lottery>
-          <LotteryButton>
-            <LotteryButtonContent>My Award</LotteryButtonContent>
+          <LotteryButton onClick={handleClickDraw}>
+            <LotteryButtonContent>Lucky Draw</LotteryButtonContent>
             {/* <LotteryButton>Play Again</LotteryButton> */}
           </LotteryButton>
         </Lottery>
