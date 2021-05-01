@@ -87,38 +87,39 @@ const Prize = styled.div`
       props.$isDraw
         ? 'animation: switch-shadow 3s;'
         : 'animation: shadow 1s infinite;' + 'animation-delay: 1.5s;'}
+    ${(props) => props.$picture !== 'pokemonball' && 'animation-delay: 0s;'}
     @media screen and (min-width: 280px) {
-      width: 13%;
+      width: 12%;
     }
     @media screen and (min-width: 360px) {
-      width: 18%;
+      width: 16%;
     }
     @media screen and (min-width: 414px) {
-      width: 20%;
+      width: 18%;
     }
     @media screen and (min-width: 540px) {
-      width: 25%;
+      width: 23%;
     }
     @media screen and (min-width: 768px) {
-      width: 200px;
+      width: 180px;
     }
   }
   @keyframes shadow {
     0% {
-      transform: scale(0.8);
-    }
-    50% {
       transform: scale(1);
     }
+    50% {
+      transform: scale(1.2);
+    }
     100% {
-      transform: scale(0.8);
+      transform: scale(1);
     }
   }
   @keyframes switch-shadow {
-    60% {
+    50% {
       transform: scale(1.1);
     }
-    95% {
+    80% {
       transform: scale(0.1);
     }
     100% {
@@ -127,7 +128,8 @@ const Prize = styled.div`
   }
 `;
 const PokemonBall = styled.div`
-  background: url('/pokemon_photo/pokemonball.svg') center/cover no-repeat;
+  background: url('/pokemon_photo/${(props) => props.$picture}.svg')
+    center/cover no-repeat;
   height: 30vw;
   background-size: contain;
   display: flex;
@@ -141,6 +143,7 @@ const PokemonBall = styled.div`
     props.$isDraw
       ? 'animation: switch 3s;'
       : 'animation: ball 1s infinite;' + 'animation-delay: 1.5s;'}
+  ${(props) => props.$picture !== 'pokemonball' && 'animation-delay: 0s;'}
   @keyframes ball {
     0% {
       transform: translate(0, 5px);
@@ -168,13 +171,18 @@ const PokemonBall = styled.div`
     40% {
       transform: rotate(0deg);
     }
-    60% {
+    50% {
       transform: scale(1.2);
     }
-    95% {
+    55% {
+      filter: brightness(1) blur(0px);
+    }
+    80% {
       transform: scale(0.05);
+      filter: brightness(0.1) blur(1px);
     }
     100% {
+      filter: brightness(1) blur(0px);
       transform: scale(1);
     }
   }
@@ -368,6 +376,7 @@ const Item_8 = styled.div`
 
 export default function App() {
   const [isDraw, setIsDraw] = useState(false);
+  const [picture, setPicture] = useState('pokemonball');
   const handleClickDraw = () => {
     if (isDraw) {
       return;
@@ -376,8 +385,17 @@ export default function App() {
     setTimeout(() => {
       setIsDraw(false);
     }, 3000);
+    setTimeout(() => {
+      setPicture(getRandomNumber());
+    }, 2400);
   };
-
+  const getRandomNumber = () => {
+    let result;
+    do {
+      result = Math.floor(Math.random() * 10);
+    } while (result === 0 || result > 8);
+    return result;
+  };
   return (
     <>
       <Main>
@@ -385,8 +403,8 @@ export default function App() {
           <PokemonLogo />
         </Title>
         <Contain>
-          <Prize $isDraw={isDraw}>
-            <PokemonBall $isDraw={isDraw} />
+          <Prize $picture={picture} $isDraw={isDraw}>
+            <PokemonBall $picture={picture} $isDraw={isDraw} />
           </Prize>
         </Contain>
         <Lottery>
