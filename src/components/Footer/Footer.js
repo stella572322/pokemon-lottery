@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-
-const FooterContainer = styled.footer`
-  width: 100%;
-  min-height: 48px;
-  background: #ffdc00;
-  color: #000;
-  display: flex;
-`;
-const Icon = styled.div``;
-const Notice = styled.img`
-  margin: 10px 6px 0 5px;
-  height: 22px;
-`;
-const Announcement = styled.div`
-  font-size: 12px;
-  margin-top: 6px;
-`;
-const Source = styled.p``;
-const Warning = styled.p``;
+import React from 'react';
+import {
+  FooterContainer,
+  Icon,
+  Notice,
+  Announcement,
+  Source,
+  Warning,
+} from './style';
 
 export default function Footer() {
   return (
