@@ -40,8 +40,18 @@ export function CarouselItem({
 }
 export default function Carousel() {
   const { prizes, startMove } = useCarousel();
+
   useEffect(() => {
-    startMove(0, { left: positionArray[1][0] });
+    startMove(0, {
+      left: positionArray[1][0],
+      top: positionArray[1][1],
+      opacity: positionArray[1][5],
+    });
+    startMove(1, {
+      left: positionArray[2][0],
+      top: positionArray[2][1],
+      opacity: positionArray[2][5],
+    });
   }, []);
 
   useEffect(() => {

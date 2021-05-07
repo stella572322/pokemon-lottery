@@ -26,7 +26,7 @@ const prizeArray = [
   {
     id: 3,
     picture: 3,
-    left: 445.5,
+    left: 446,
     top: -13,
     zindex: '3',
     width: 143,
@@ -38,7 +38,7 @@ const prizeArray = [
   {
     id: 4,
     picture: 4,
-    left: 628.5,
+    left: 629,
     top: 16,
     zindex: '4',
     width: 180,
@@ -50,7 +50,7 @@ const prizeArray = [
   {
     id: 5,
     picture: 5,
-    left: 838.5,
+    left: 839,
     top: -13,
     zindex: '3',
     width: 143,
