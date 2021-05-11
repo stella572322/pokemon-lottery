@@ -10,23 +10,25 @@ export default function useCarousel() {
     prizes[index].timer = setInterval(function () {
       console.log('===============分隔線=================');
       var intervalContinue = true;
-      for (var attr in json) {
-        setPrizes((prizes) => {
+      //for (var attr in json) {
+      setPrizes((prizes) => {
+        let tempObject = prizes[index];
+        console.log(tempObject);
+        for (let attr in json) {
           let cur;
-
           /* 抓取調整前的數值 cur */
           if (attr === 'opacity') {
-            cur = Math.round(parseFloat(prizes[index][`${attr}`]) * 100);
+            cur = Math.round(parseFloat(tempObject[`${attr}`]) * 100);
           } else {
-            cur = prizes[index][`${attr}`];
+            cur = tempObject[`${attr}`];
           }
           console.log(`調整前的 ${attr} :`, cur);
 
           /* 計算調整的幅度 speed */
           let speed =
             attr === 'opacity'
-              ? (json[attr] * 100 - cur) / 2
-              : (json[attr] - cur) / 2;
+              ? (json[attr] * 100 - cur) / 1.5
+              : (json[attr] - cur) / 1.5;
           speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
           console.log('調整幅度 speed:', speed);
 
@@ -41,15 +43,17 @@ export default function useCarousel() {
             `調整後的 ${attr} :`,
             attr === 'opacity' ? (cur + speed) / 100 : cur + speed
           );
-          return prizes.map((item, prizeIndex) => {
-            if (prizeIndex !== index) return item;
-            return {
-              ...item,
-              [attr]: attr === 'opacity' ? (cur + speed) / 100 : cur + speed,
-            };
-          });
+          tempObject = {
+            ...tempObject,
+            [attr]: attr === 'opacity' ? (cur + speed) / 100 : cur + speed,
+          };
+        }
+        return prizes.map((item, prizeIndex) => {
+          if (prizeIndex !== index) return item;
+          return tempObject;
         });
-      }
+      });
+      //}
       console.log('intervalContinue: ', intervalContinue);
       if (intervalContinue) {
         clearInterval(prizes[index].timer);
