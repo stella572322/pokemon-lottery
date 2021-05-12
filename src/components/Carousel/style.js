@@ -2,6 +2,7 @@ import styled from 'styled-components';
 export const CarouselContainer = styled.section`
   display: flex;
   justify-content: center;
+  margin-bottom: 30px;
 `;
 export const CarouselItems = styled.div`
   position: relative;
@@ -13,9 +14,10 @@ export const ItemContainer = styled.div`
   top: ${(props) => props.$top}px;
   left: ${(props) => props.$left}px;
 `;
-export const FirstMedal = styled.div`
+export const Medal = styled.div`
   background: url('/pokemon_photo/${(props) => props.$medal}_medal.svg')
     center/cover no-repeat;
+  opacity: ${(props) => props.$opacity};
   position: relative;
   width: 40px;
   height: 40px;
@@ -47,3 +49,38 @@ export const Percentage = styled.div`
   width: 100%;
 `;
 export const Percent = styled.div``;
+
+export const CarouselButton = styled.div`
+  position: absolute;
+  padding-top: 125px;
+  width: 76vw;
+  display: flex;
+  margin: 0 auto;
+  z-index: 2;
+  justify-content: space-between;
+  align-items: center;
+`;
+export const CarouselPrevButton = styled.div`
+  background: url('/pokemon_photo/arrow-circle-left-light.svg') center/cover
+    no-repeat;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  color: black;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+export const CarouselNextButton = styled.div`
+  background: url('/pokemon_photo/arrow-circle-right-light.svg') center/cover
+    no-repeat;
+  position: relative;
+  height: 40px;
+  width: 40px;
+  color: black;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+`;

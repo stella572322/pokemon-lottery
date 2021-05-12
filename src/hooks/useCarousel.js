@@ -10,7 +10,6 @@ export default function useCarousel() {
     prizes[index].timer = setInterval(function () {
       console.log('===============分隔線=================');
       var intervalContinue = true;
-      //for (var attr in json) {
       setPrizes((prizes) => {
         let tempObject = prizes[index];
         console.log(tempObject);
@@ -53,7 +52,6 @@ export default function useCarousel() {
           return tempObject;
         });
       });
-      //}
       console.log('intervalContinue: ', intervalContinue);
       if (intervalContinue) {
         clearInterval(prizes[index].timer);

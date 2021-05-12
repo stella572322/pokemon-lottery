@@ -4,12 +4,15 @@ import prizeArray from '../../config/prizeArray';
 import useCarousel from '../../hooks/useCarousel.js';
 import {
   ItemContainer,
-  FirstMedal,
+  Medal,
   Item,
   Percentage,
   Percent,
   CarouselContainer,
   CarouselItems,
+  CarouselButton,
+  CarouselPrevButton,
+  CarouselNextButton,
 } from './style';
 
 export function CarouselItem({
@@ -24,7 +27,7 @@ export function CarouselItem({
 }) {
   return (
     <ItemContainer $top={top} $left={left}>
-      <FirstMedal $medal={medal}></FirstMedal>
+      <Medal $medal={medal} $opacity={opacity}></Medal>
       <Item
         $picture={picture}
         $width={width}
@@ -38,6 +41,7 @@ export function CarouselItem({
     </ItemContainer>
   );
 }
+
 export default function Carousel() {
   const { prizes, startMove } = useCarousel();
 
@@ -118,6 +122,10 @@ export default function Carousel() {
             );
           })}
         </CarouselItems>
+        <CarouselButton>
+          <CarouselPrevButton />
+          <CarouselNextButton />
+        </CarouselButton>
       </CarouselContainer>
     </>
   );
