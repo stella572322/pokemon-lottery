@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import useCarousel from '../../hooks/useCarousel.js';
 import {
   ItemContainer,
@@ -41,12 +41,31 @@ export function CarouselItem({
 }
 
 export default function Carousel() {
-  const { prizes, handleClickPreButton, handleClickNextButton } = useCarousel();
+  let moveTimer = useRef();
+  const {
+    prizes,
+    isHover,
+    setIsHover,
+    handleClickPreButton,
+    handleClickNextButton,
+  } = useCarousel();
+
+  useEffect(() => {
+    if (isHover) clearInterval(moveTimer.current);
+    if (!isHover) moveTimer.current = setInterval(handleClickNextButton, 2000);
+  }, [isHover]);
 
   return (
     <>
       <CarouselContainer>
-        <CarouselItems>
+        <CarouselItems
+          onMouseOver={() => {
+            setIsHover(true);
+          }}
+          onMouseLeave={() => {
+            setIsHover(false);
+          }}
+        >
           {prizes.map((prize) => {
             return (
               <CarouselItem

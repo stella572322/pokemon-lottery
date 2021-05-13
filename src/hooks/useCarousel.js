@@ -1,33 +1,25 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import positionArray from '../config/positionArray';
 import prizeArray from '../config/prizeArray';
 
 export default function useCarousel() {
   const [prizes, setPrizes] = useState(prizeArray);
   const [movePosition, setMovePosition] = useState(positionArray);
+  const [isHover, setIsHover] = useState(false);
 
-  const handleClickPreButton = () => {};
+  const handleClickPreButton = () => {
+    setMovePosition((movePosition) =>
+      [movePosition[6], ...movePosition].filter((_, index) => index !== 7)
+    );
+  };
 
   const handleClickNextButton = () => {
-    setMovePosition(
+    setMovePosition((movePosition) =>
       [...movePosition, movePosition[0]].filter((_, index) => index !== 0)
     );
   };
 
-  useEffect(() => {
-    for (let i = 0; i < 7; i++) {
-      let j = i === 6 ? 0 : i + 1;
-      startMove(i, {
-        left: movePosition[j][0],
-        top: movePosition[j][1],
-        width: movePosition[j][2],
-        height: movePosition[j][3],
-        opacity: movePosition[j][4],
-      });
-    }
-  }, [movePosition]);
-
-  const startMove = (index, json) => {
+  const startMove = useCallback((index, json) => {
     clearInterval(prizes[index].timer);
     prizes[index].timer = setInterval(function () {
       //console.log('===============分隔線=================');
@@ -79,10 +71,26 @@ export default function useCarousel() {
         clearInterval(prizes[index].timer);
       }
     }, 0);
-  };
+  }, []);
+
+  useEffect(() => {
+    for (let i = 0; i < 7; i++) {
+      let j = i === 6 ? 0 : i + 1;
+      startMove(i, {
+        left: movePosition[j][0],
+        top: movePosition[j][1],
+        width: movePosition[j][2],
+        height: movePosition[j][3],
+        opacity: movePosition[j][4],
+      });
+    }
+  }, [movePosition, startMove]);
+
   return {
     prizes,
     movePosition,
+    isHover,
+    setIsHover,
     setMovePosition,
     startMove,
     handleClickNextButton,
