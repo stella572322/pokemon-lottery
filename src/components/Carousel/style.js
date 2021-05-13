@@ -56,9 +56,9 @@ export const CarouselButton = styled.div`
   width: 76vw;
   display: flex;
   margin: 0 auto;
-  z-index: 2;
   justify-content: space-between;
   align-items: center;
+  pointer-events: none;
 `;
 export const CarouselPrevButton = styled.div`
   background: url('/pokemon_photo/arrow-circle-left-light.svg') center/cover
@@ -68,6 +68,7 @@ export const CarouselPrevButton = styled.div`
   width: 40px;
   color: black;
   cursor: pointer;
+  pointer-events: auto;
   &:hover {
     transform: scale(1.1);
   }
@@ -80,6 +81,7 @@ export const CarouselNextButton = styled.div`
   width: 40px;
   color: black;
   cursor: pointer;
+  pointer-events: auto;
   &:hover {
     transform: scale(1.1);
   }
