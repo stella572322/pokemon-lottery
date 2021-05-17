@@ -18,7 +18,6 @@ export default function useLottery() {
   };
   const getRandomNumber = () => {
     let sortPrizes = prizeArray.sort((a, b) => a.percent - b.percent);
-    console.log('sortPrizes: ', sortPrizes);
     let weightArray = sortPrizes.map((_, index) => {
       let count = 0;
       for (let i = 0; i <= index; i++) {
@@ -26,8 +25,7 @@ export default function useLottery() {
       }
       return count;
     });
-    console.log('weightArray: ', weightArray);
-    let random = Math.random() * 100;
+    let random = Math.random() * weightArray[weightArray.length - 1];
     let index;
     for (let i = 0; i <= weightArray.length; i++) {
       if (weightArray[i] >= random) {
@@ -35,19 +33,8 @@ export default function useLottery() {
         break;
       }
     }
-    console.log('random: ', random);
-    console.log('index: ', index);
     return sortPrizes[index].picture;
   };
-
-  // const getRandomNumber = () => {
-  //   let result;
-  //   do {
-  //     result = Math.floor(Math.random() * 10);
-  //   } while (result === 0 || result > 8);
-  //   return result;
-  // };
-
   return {
     isDraw,
     picture,
