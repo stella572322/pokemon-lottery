@@ -25,8 +25,9 @@ export function CarouselItem({
 }) {
   return (
     <ItemContainer $top={top} $left={left}>
-      <Medal $medal={medal} $opacity={opacity}></Medal>
+      <Medal $medal={medal} $opacity={opacity} $left={left}></Medal>
       <Item
+        $left={left}
         $picture={picture}
         $width={width}
         $height={height}

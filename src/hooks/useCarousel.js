@@ -23,7 +23,7 @@ export default function useCarousel() {
     clearInterval(prizes[index].timer);
     prizes[index].timer = setInterval(function () {
       //console.log('===============分隔線=================');
-      var intervalContinue = true;
+      var intervalContinue = false;
       setPrizes((prizes) => {
         let tempObject = prizes[index];
         //console.log(tempObject);
@@ -47,9 +47,8 @@ export default function useCarousel() {
 
           /* 判斷是否已經調整到目標位置 */
           if (attr === 'opacity' && cur / 100 !== json[attr])
-            intervalContinue = false;
-          if (attr !== 'opacity' && cur !== json[attr])
-            intervalContinue = false;
+            intervalContinue = true;
+          if (attr !== 'opacity' && cur !== json[attr]) intervalContinue = true;
 
           /* 開始進行調整 */
           //console.log(
@@ -67,7 +66,7 @@ export default function useCarousel() {
         });
       });
       //console.log('intervalContinue: ', intervalContinue);
-      if (intervalContinue) {
+      if (!intervalContinue) {
         clearInterval(prizes[index].timer);
       }
     }, 0);

@@ -23,6 +23,12 @@ export const Medal = styled.div`
   height: 40px;
   margin: 70px 0 -40px 0;
   z-index: 1;
+  @media screen and (max-width: 768px) {
+    opacity: ${(props) => {
+      if (props.$left <= 450 || props.$left >= 830) return 0;
+      return props.$opacity;
+    }};
+  }
 `;
 export const Item = styled.div`
   background: url('/pokemon_photo/${(props) => props.$picture}_black.svg')
@@ -37,6 +43,12 @@ export const Item = styled.div`
     & div {
       display: none;
     }
+  }
+  @media screen and (max-width: 768px) {
+    opacity: ${(props) => {
+      if (props.$left <= 450 || props.$left >= 830) return 0;
+      return props.$opacity;
+    }};
   }
 `;
 export const Percentage = styled.div`
