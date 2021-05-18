@@ -6,7 +6,7 @@ export const Title = styled.div`
   margin: 0 auto;
 `;
 export const PokemonLogo = styled.div`
-  background: url('/pokemon_photo/pokemon-logo.png') center/cover no-repeat;
+  background: url('pokemon_photo/pokemon-logo.png') center/cover no-repeat;
   height: 30vw;
   background-size: contain;
   margin-top: 25px;

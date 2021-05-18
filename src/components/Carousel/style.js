@@ -15,7 +15,7 @@ export const ItemContainer = styled.div`
   left: ${(props) => props.$left}px;
 `;
 export const Medal = styled.div`
-  background: url('/pokemon_photo/${(props) => props.$medal}_medal.svg')
+  background: url('pokemon_photo/${(props) => props.$medal}_medal.svg')
     center/cover no-repeat;
   opacity: ${(props) => props.$opacity};
   position: relative;
@@ -31,13 +31,13 @@ export const Medal = styled.div`
   }
 `;
 export const Item = styled.div`
-  background: url('/pokemon_photo/${(props) => props.$picture}_black.svg')
+  background: url('pokemon_photo/${(props) => props.$picture}_black.svg')
     center/cover no-repeat;
   width: ${(props) => props.$width}px;
   height: ${(props) => props.$height}px;
   opacity: ${(props) => props.$opacity};
   &:hover {
-    background: url('/pokemon_photo/${(props) => props.$picture}.svg')
+    background: url('pokemon_photo/${(props) => props.$picture}.svg')
       center/cover no-repeat;
     transform: scale(1.2);
     & div {
@@ -73,7 +73,7 @@ export const CarouselButton = styled.div`
   pointer-events: none;
 `;
 export const CarouselPrevButton = styled.div`
-  background: url('/pokemon_photo/arrow-circle-left-light.svg') center/cover
+  background: url('pokemon_photo/arrow-circle-left-light.svg') center/cover
     no-repeat;
   position: relative;
   height: 40px;
@@ -86,7 +86,7 @@ export const CarouselPrevButton = styled.div`
   }
 `;
 export const CarouselNextButton = styled.div`
-  background: url('/pokemon_photo/arrow-circle-right-light.svg') center/cover
+  background: url('pokemon_photo/arrow-circle-right-light.svg') center/cover
     no-repeat;
   position: relative;
   height: 40px;

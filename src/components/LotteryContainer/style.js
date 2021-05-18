@@ -65,8 +65,8 @@ export const Prize = styled.div`
   }
 `;
 export const PokemonBall = styled.div`
-  background: url('/pokemon_photo/${(props) => props.$picture}.svg')
-    center/cover no-repeat;
+  background: url('pokemon_photo/${(props) => props.$picture}.svg') center/cover
+    no-repeat;
   height: 30vw;
   background-size: contain;
   display: flex;
